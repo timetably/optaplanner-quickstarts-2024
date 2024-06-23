@@ -29,35 +29,40 @@
         <button id="stopSolvingButton" type="button" class="btn btn-danger">
             <span class="fas fa-stop"></span> Stop solving
         </button>
+
+
         <!--    <button type="button" class="float-right btn btn-warning"><span class="fas fa-stop"></span> Terminate</button>-->
         <span id="score" class="score ml-2 align-middle font-weight-bold">Score: ?</span>
 
-        <div class="float-right">
-            <ul class="nav nav-pills" id="myTab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" id="byRoomTab" data-toggle="tab" href="#byRoomPanel" role="tab" aria-controls="byRoomPanel" aria-selected="true">By room</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="byTeacherTab" data-toggle="tab" href="#byTeacher" role="tab" aria-controls="byTeacher" aria-selected="false">By teacher</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="byStudentGroupTab" data-toggle="tab" href="#byStudentGroup" role="tab" aria-controls="byStudentGroup" aria-selected="false">By student group</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="byRoomPanel" role="tabpanel" aria-labelledby="byRoomTab">
-            <table class="table table-borderless table-striped" id="timeTableByRoom">
-                <!-- Filled in by app.js -->
+         <div class="float-right">
+             <ul class="nav nav-pills" id="myTab" role="tablist">
+                 <li class="nav-item">
+                     <a class="nav-link active" id="byRoomTab" data-toggle="tab" href="#byRoomPanel" role="tab" aria-controls="byRoomPanel" aria-selected="true">By room</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" id="byTeacherTab" data-toggle="tab" href="#byTeacher" role="tab" aria-controls="byTeacher" aria-selected="false">By teacher</a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" id="byStudentGroupTab" data-toggle="tab" href="#byStudentGroup" role="tab" aria-controls="byStudentGroup" aria-selected="false">By student group</a>
+                 </li>
+             </ul>
+         </div>
+     </div>
+     <div class="tab-content" id="myTabContent">
+         <div class="tab-pane fade show active" id="byRoomPanel" role="tabpanel" aria-labelledby="byRoomTab">
+             <select class="form-select" aria-label="Default select example" id="selectRoom"></select>
+             <table class="table table-borderless table-striped" id="timeTableByRoom">
+                 <!-- Filled in by app.js -->
             </table>
         </div>
         <div class="tab-pane fade" id="byTeacher" role="tabpanel" aria-labelledby="byTeacherTab">
+            <select class="form-select" aria-label="Default select example" id="selectTeacher"></select>
             <table class="table table-borderless table-striped" id="timeTableByTeacher">
                 <!-- Filled in by app.js -->
             </table>
         </div>
         <div class="tab-pane fade" id="byStudentGroup" role="tabpanel" aria-labelledby="byStudentGroupTab">
+            <select class="form-select" aria-label="Default select example" id="selectStudentGroup"></select>
             <table class="table table-borderless table-striped" id="timeTableByStudentGroup">
                 <!-- Filled in by app.js -->
             </table>
@@ -171,8 +176,9 @@
     </div>
 </div>
 
-<script src="/webjars/jquery/jquery.min.js"></script>
-<script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="/webjars/js-joda/dist/js-joda.min.js"></script>
 <script src="/app.js"></script>
 </body>

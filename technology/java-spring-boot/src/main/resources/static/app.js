@@ -15,21 +15,57 @@ function refreshTimeTable() {
     const unassignedLessons = $("#unassignedLessons");
     unassignedLessons.children().remove();
 
+    const selectRoom = $("#selectRoom")
+    selectRoom.children().remove();
+    $.each(timeTable.roomList, (index, room) => {
+      selectRoom
+          .append($("<option>").val(room.name).text(room.name))
+          .append($("</option>"));
+    });
+    selectRoom.val(localStorage.getItem("selectRoom"));
+
+    const selectTeacher = $("#selectTeacher")
+    selectTeacher.children().remove();
+   $.each([...new Set(timeTable.lessonList.map(lesson => lesson.teacher))], (index, teacher) => {
+      selectTeacher
+          .append($("<option>").val(teacher).text(teacher))
+          .append($("</option>"));
+    });
+    selectTeacher.val(localStorage.getItem("selectTeacher"));
+
+    const selectStudentGroup = $("#selectStudentGroup")
+    selectStudentGroup.children().remove();
+    $.each([...new Set(timeTable.lessonList.map(lesson => lesson.studentGroup))], (index, studentGroup) => {
+      selectStudentGroup
+          .append($("<option>").val(studentGroup).text(studentGroup))
+          .append($("</option>"));
+    });
+    selectStudentGroup.val(localStorage.getItem("selectStudentGroup"));
+
     const theadByRoom = $("<thead>").appendTo(timeTableByRoom);
     const headerRowByRoom = $("<tr>").appendTo(theadByRoom);
     headerRowByRoom.append($("<th>Timeslot</th>"));
+
+
     $.each(timeTable.roomList, (index, room) => {
-      headerRowByRoom
-        .append($("<th/>")
-          .append($("<span/>").text(room.name))
-          .append($(`<button type="button" class="ml-2 mb-1 btn btn-light btn-sm p-1"/>`)
-            .append($(`<small class="fas fa-trash"/>`)
-            ).click(() => deleteRoom(room))));
+      if(room.name === localStorage.getItem("selectRoom")) {
+        headerRowByRoom
+            .append($("<th/>")
+                .append($("<span/>").text(room.name))
+                .append($(`<button type="button" class="ml-2 mb-1 btn btn-light btn-sm p-1"/>`)
+                    .append($(`<small class="fas fa-trash"/>`)
+                    ).click(() => deleteRoom(room))));
+      }
     });
     const theadByTeacher = $("<thead>").appendTo(timeTableByTeacher);
     const headerRowByTeacher = $("<tr>").appendTo(theadByTeacher);
     headerRowByTeacher.append($("<th>Timeslot</th>"));
-    const teacherList = [...new Set(timeTable.lessonList.map(lesson => lesson.teacher))];
+
+    const teacherList = [...new Set(timeTable.lessonList.map(lesson => {
+      if (lesson.teacher === localStorage.getItem("selectTeacher")){
+        return lesson.teacher
+      }
+    }))];
     $.each(teacherList, (index, teacher) => {
       headerRowByTeacher
         .append($("<th/>")
@@ -38,7 +74,11 @@ function refreshTimeTable() {
     const theadByStudentGroup = $("<thead>").appendTo(timeTableByStudentGroup);
     const headerRowByStudentGroup = $("<tr>").appendTo(theadByStudentGroup);
     headerRowByStudentGroup.append($("<th>Timeslot</th>"));
-    const studentGroupList = [...new Set(timeTable.lessonList.map(lesson => lesson.studentGroup))];
+    const studentGroupList = [...new Set(timeTable.lessonList.map(lesson => {
+      if (lesson.studentGroup === localStorage.getItem("selectStudentGroup")){
+        return lesson.studentGroup
+      }
+    }))];
     $.each(studentGroupList, (index, studentGroup) => {
       headerRowByStudentGroup
         .append($("<th/>")
@@ -65,7 +105,9 @@ function refreshTimeTable() {
               .append($(`<small class="fas fa-trash"/>`)
               ).click(() => deleteTimeslot(timeslot)))));
       $.each(timeTable.roomList, (index, room) => {
-        rowByRoom.append($("<td/>").prop("id", `timeslot${timeslot.id}room${room.id}`));
+        if(room.name === localStorage.getItem("selectRoom")) {
+          rowByRoom.append($("<td/>").prop("id", `timeslot${timeslot.id}room${room.id}`));
+        }
       });
 
       const rowByTeacher = $("<tr>").appendTo(tbodyByTeacher);
@@ -286,6 +328,22 @@ $(document).ready(function () {
   });
   $("#addRoomSubmitButton").click(function () {
     addRoom();
+  });
+
+  $("#selectRoom").change(function () {
+    let selectedOption = $(this).val();
+    localStorage.setItem("selectRoom", selectedOption);
+    refreshTimeTable()
+  });
+  $("#selectTeacher").change(function () {
+    let selectedOption = $(this).val();
+    localStorage.setItem("selectTeacher", selectedOption);
+    refreshTimeTable()
+  });
+  $("#selectStudentGroup").change(function () {
+    let selectedOption = $(this).val();
+    localStorage.setItem("selectStudentGroup", selectedOption);
+    refreshTimeTable()
   });
 
   refreshTimeTable();
