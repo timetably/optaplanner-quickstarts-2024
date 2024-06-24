@@ -23,30 +23,41 @@ public class TimeTableSpringBootApp {
         SpringApplication.run(TimeTableSpringBootApp.class, args);
     }
 
-    @Value("${timeTable.demoData:SMALL}")
+    @Value("${timeTable.demoData:REAL}")
     private DemoData demoData;
 
     @Bean
     public CommandLineRunner demoData(
-            TimeslotRepository timeslotRepository,
-            RoomRepository roomRepository,
-            LessonRepository lessonRepository) {
+        TimeslotRepository timeslotRepository,
+        RoomRepository roomRepository,
+        LessonRepository lessonRepository) {
         return (args) -> {
             if (demoData == DemoData.NONE) {
                 return;
             }
-
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
-            timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
+            if (demoData == DemoData.SMALL) {
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
+            }
             if (demoData == DemoData.LARGE) {
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
                 timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(8, 30), LocalTime.of(9, 30)));
                 timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)));
                 timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(10, 30), LocalTime.of(11, 30)));
@@ -63,27 +74,114 @@ public class TimeTableSpringBootApp {
                 timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(13, 30), LocalTime.of(14, 30)));
                 timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(14, 30), LocalTime.of(15, 30)));
             }
+            if (demoData == DemoData.REAL) {
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(7, 30), LocalTime.of(8, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(8, 20), LocalTime.of(9, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(9, 10), LocalTime.of(9, 55)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(10, 15), LocalTime.of(11, 0)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(11, 5), LocalTime.of(11, 50)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(13, 30), LocalTime.of(14, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(14, 20), LocalTime.of(15, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.MONDAY, LocalTime.of(15, 25), LocalTime.of(16, 10)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(7, 30), LocalTime.of(8, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(8, 20), LocalTime.of(9, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9, 10), LocalTime.of(9, 55)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(10, 15), LocalTime.of(11, 0)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(11, 5), LocalTime.of(11, 50)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(13, 30), LocalTime.of(14, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(14, 20), LocalTime.of(15, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(15, 25), LocalTime.of(16, 10)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(7, 30), LocalTime.of(8, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(8, 20), LocalTime.of(9, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(9, 10), LocalTime.of(9, 55)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(10, 15), LocalTime.of(11, 0)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.WEDNESDAY, LocalTime.of(11, 5), LocalTime.of(11, 50)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(7, 30), LocalTime.of(8, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(8, 20), LocalTime.of(9, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(9, 10), LocalTime.of(9, 55)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(10, 15), LocalTime.of(11, 0)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(11, 5), LocalTime.of(11, 50)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(13, 30), LocalTime.of(14, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(14, 20), LocalTime.of(15, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.THURSDAY, LocalTime.of(15, 25), LocalTime.of(16, 10)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(7, 30), LocalTime.of(8, 15)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(8, 20), LocalTime.of(9, 5)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(9, 10), LocalTime.of(9, 55)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(10, 15), LocalTime.of(11, 0)));
+                timeslotRepository.save(new Timeslot(DayOfWeek.FRIDAY, LocalTime.of(11, 5), LocalTime.of(11, 50)));
 
-            roomRepository.save(new Room("Room A"));
-            roomRepository.save(new Room("Room B"));
-            roomRepository.save(new Room("Room C"));
+
+            }
+            if (demoData == DemoData.SMALL) {
+                roomRepository.save(new Room("Room A"));
+                roomRepository.save(new Room("Room B"));
+                roomRepository.save(new Room("Room C"));
+            }
             if (demoData == DemoData.LARGE) {
+                roomRepository.save(new Room("Room A"));
+                roomRepository.save(new Room("Room B"));
+                roomRepository.save(new Room("Room C"));
                 roomRepository.save(new Room("Room D"));
                 roomRepository.save(new Room("Room E"));
                 roomRepository.save(new Room("Room F"));
             }
+            if(demoData == DemoData.REAL){
+                roomRepository.save(new Room("D -1.05 Tech. Gestalten"));
 
-            lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
-            lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
-            lessonRepository.save(new Lesson("Physics", "M. Curie", "9th grade"));
-            lessonRepository.save(new Lesson("Chemistry", "M. Curie", "9th grade"));
-            lessonRepository.save(new Lesson("Biology", "C. Darwin", "9th grade"));
-            lessonRepository.save(new Lesson("History", "I. Jones", "9th grade"));
-            lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
-            lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
-            lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
-            lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
+                roomRepository.save(new Room("D E.04 Klassenzimmer"));
+                roomRepository.save(new Room("D E.05 Klassenzimmer"));
+                roomRepository.save(new Room("D E.06 Logopädie"));
+                roomRepository.save(new Room("D 1.03 Arbeitszimmer"));
+                roomRepository.save(new Room("D 1.04 Textiles Gestalten"));
+                roomRepository.save(new Room("D 1.05 Psychomotorik"));
+                roomRepository.save(new Room("D 1.06 Klassenzimmer"));
+                roomRepository.save(new Room("D 1.07 Heilpädagogik / Schulsozialarbeit"));
+                roomRepository.save(new Room("D 2.03 Klassenzimmer"));
+                roomRepository.save(new Room("D 2.04 Klassenzimmer"));
+                roomRepository.save(new Room("D 2.05 Klassenzimmer"));
+                roomRepository.save(new Room("D 3.04 Bibliothek"));
+                roomRepository.save(new Room("A E.02 DaZ"));
+                roomRepository.save(new Room("A E.04 Tech. Gestalten"));
+                roomRepository.save(new Room("A 1.02 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.03 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.04 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.05 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.06 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.07 Klassenzimmer"));
+                roomRepository.save(new Room("A 1.08 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.02 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.03 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.04 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.05 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.06 Gruppenraum 2 Schwerpunkt tex. Gestalten"));
+                roomRepository.save(new Room("A 2.07 Klassenzimmer"));
+                roomRepository.save(new Room("A 2.08 Klassenzimmer"));
+                roomRepository.save(new Room("Turnhalle"));
+                roomRepository.save(new Room("Singsaal"));
+            }
+            if (demoData == DemoData.SMALL) {
+                lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
+                lessonRepository.save(new Lesson("Physics", "M. Curie", "9th grade"));
+                lessonRepository.save(new Lesson("Chemistry", "M. Curie", "9th grade"));
+                lessonRepository.save(new Lesson("Biology", "C. Darwin", "9th grade"));
+                lessonRepository.save(new Lesson("History", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
+            }
             if (demoData == DemoData.LARGE) {
+                lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
+                lessonRepository.save(new Lesson("Physics", "M. Curie", "9th grade"));
+                lessonRepository.save(new Lesson("Chemistry", "M. Curie", "9th grade"));
+                lessonRepository.save(new Lesson("Biology", "C. Darwin", "9th grade"));
+                lessonRepository.save(new Lesson("History", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("English", "I. Jones", "9th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "9th grade"));
                 lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
                 lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
                 lessonRepository.save(new Lesson("Math", "A. Turing", "9th grade"));
@@ -100,18 +198,29 @@ public class TimeTableSpringBootApp {
                 lessonRepository.save(new Lesson("Physical education", "C. Lewis", "9th grade"));
                 lessonRepository.save(new Lesson("Physical education", "C. Lewis", "9th grade"));
             }
-
-            lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
-            lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
-            lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
-            lessonRepository.save(new Lesson("Physics", "M. Curie", "10th grade"));
-            lessonRepository.save(new Lesson("Chemistry", "M. Curie", "10th grade"));
-            lessonRepository.save(new Lesson("French", "M. Curie", "10th grade"));
-            lessonRepository.save(new Lesson("Geography", "C. Darwin", "10th grade"));
-            lessonRepository.save(new Lesson("History", "I. Jones", "10th grade"));
-            lessonRepository.save(new Lesson("English", "P. Cruz", "10th grade"));
-            lessonRepository.save(new Lesson("Spanish", "P. Cruz", "10th grade"));
+            if (demoData == DemoData.SMALL) {
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Physics", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("Chemistry", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("French", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("Geography", "C. Darwin", "10th grade"));
+                lessonRepository.save(new Lesson("History", "I. Jones", "10th grade"));
+                lessonRepository.save(new Lesson("English", "P. Cruz", "10th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "10th grade"));
+            }
             if (demoData == DemoData.LARGE) {
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
+                lessonRepository.save(new Lesson("Physics", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("Chemistry", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("French", "M. Curie", "10th grade"));
+                lessonRepository.save(new Lesson("Geography", "C. Darwin", "10th grade"));
+                lessonRepository.save(new Lesson("History", "I. Jones", "10th grade"));
+                lessonRepository.save(new Lesson("English", "P. Cruz", "10th grade"));
+                lessonRepository.save(new Lesson("Spanish", "P. Cruz", "10th grade"));
                 lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
                 lessonRepository.save(new Lesson("Math", "A. Turing", "10th grade"));
                 lessonRepository.save(new Lesson("ICT", "A. Turing", "10th grade"));
@@ -180,6 +289,328 @@ public class TimeTableSpringBootApp {
                 lessonRepository.save(new Lesson("Physical education", "C. Lewis", "12th grade"));
                 lessonRepository.save(new Lesson("Physical education", "C. Lewis", "12th grade"));
             }
+            if(demoData == DemoData.REAL) {
+                lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "jm", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "jm", "3a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Franz", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Franz", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Franz", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Math", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Math", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Math", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Math", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Math", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Musik", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Musik", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Sport", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Sport", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Sport", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Barbara", "3a grade"));
+                lessonRepository.save(new Lesson("TTG", "Monika", "3a grade"));
+                lessonRepository.save(new Lesson("TTG", "Monika", "3a grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "3a grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "3a grade"));
+                lessonRepository.save(new Lesson("NMG", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("NMG", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("NMG", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Franz", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Franz", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Franz", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Math", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Math", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Math", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Math", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Math", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Musik", "Monika", "3b grade"));
+                lessonRepository.save(new Lesson("Musik", "Monika", "3b grade"));
+                lessonRepository.save(new Lesson("Sport", "jm", "3b grade"));
+                lessonRepository.save(new Lesson("Sport", "jm", "3b grade"));
+                lessonRepository.save(new Lesson("Sport", "jm", "3b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Cornelia", "3b grade"));
+                lessonRepository.save(new Lesson("TTG", "Monika", "3b grade"));
+                lessonRepository.save(new Lesson("TTG", "Monika", "3b grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "3b grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "3b grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Franz", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Franz", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Franz", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Math", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Math", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Math", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Math", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Math", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Musik", "Judith", "3c grade"));
+                lessonRepository.save(new Lesson("Musik", "Judith", "3c grade"));
+                lessonRepository.save(new Lesson("Sport", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Sport", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Sport", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Alexandra", "3c grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "3c grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "3c grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Franz", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("Franz", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("Franz", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("Math", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Math", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Math", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Math", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Math", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Musik", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Musik", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Musik", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("Musik", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("Sport", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Sport", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Sport", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Sarah", "4a grade"));
+                lessonRepository.save(new Lesson("TTG", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("TTG", "Susanne", "4a grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "4a grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "4a grade"));
+                lessonRepository.save(new Lesson("NMG", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Franz", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Franz", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Franz", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Math", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Math", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Math", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Math", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Math", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Musik", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Musik", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Sport", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Sport", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Sport", "Judith", "4b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Michelle", "4b grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "4b grade"));
+                lessonRepository.save(new Lesson("TTG", "Gisela", "4b grade"));
+                lessonRepository.save(new Lesson("TTG", "Susanne", "4b grade"));
+                lessonRepository.save(new Lesson("TTG", "Susanne", "4b grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Franz", "Zoe", "5a grade"));
+                lessonRepository.save(new Lesson("Franz", "Zoe", "5a grade"));
+                lessonRepository.save(new Lesson("Englisch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Englisch", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Math", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Math", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Math", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Math", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Math", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Musik", "Zoe", "5a grade"));
+                lessonRepository.save(new Lesson("Musik", "Zoe", "5a grade"));
+                lessonRepository.save(new Lesson("Sport", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Sport", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Sport", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("TTG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("TTG", "Samson", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Susanne", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Susanne", "5a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Susanne", "5a grade"));
+                lessonRepository.save(new Lesson("Schwimmen", "Zoe", "5a grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Franz", "jm", "5b grade"));
+                lessonRepository.save(new Lesson("Franz", "jm", "5b grade"));
+                lessonRepository.save(new Lesson("Englisch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Englisch", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Math", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Math", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Math", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Math", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Math", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Musik", "jm", "5b grade"));
+                lessonRepository.save(new Lesson("Musik", "jm", "5b grade"));
+                lessonRepository.save(new Lesson("Sport", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Sport", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Sport", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("TTG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("TTG", "Michael", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "JJ", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "JJ", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "JJ", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Florian", "5b grade"));
+                lessonRepository.save(new Lesson("Schwimmen", "jm", "5b grade"));
+                lessonRepository.save(new Lesson("NMG", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Franz", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Franz", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6a grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6a grade"));
+                lessonRepository.save(new Lesson("Math", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Math", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Math", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Math", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Math", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Musik", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Musik", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Musik", "Florian", "6a grade"));
+                lessonRepository.save(new Lesson("Musik", "Florian", "6a grade"));
+                lessonRepository.save(new Lesson("Sport", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Sport", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Sport", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Melanie", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6a grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6a grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Claudia", "6a grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Franz", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Franz", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6b grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6b grade"));
+                lessonRepository.save(new Lesson("Math", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Math", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Math", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Math", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Math", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Musik", "JJ", "6b grade"));
+                lessonRepository.save(new Lesson("Musik", "JJ", "6b grade"));
+                lessonRepository.save(new Lesson("Sport", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Sport", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Sport", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Adrian", "6b grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Adrian", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "WeitereLP", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "WeitereLP", "6b grade"));
+                lessonRepository.save(new Lesson("TTG", "WeitereLP", "6b grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Iwan", "6b grade"));
+                lessonRepository.save(new Lesson("NMG", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("NMG", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("NMG", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("NMG", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("NMG", "JJ", "6c grade"));
+                lessonRepository.save(new Lesson("NMG", "JJ", "6c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Deutsch", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Franz", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Franz", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6c grade"));
+                lessonRepository.save(new Lesson("Englisch", "Florian", "6c grade"));
+                lessonRepository.save(new Lesson("Math", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Math", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Math", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Math", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Math", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Musik", "JJ", "6c grade"));
+                lessonRepository.save(new Lesson("Musik", "JJ", "6c grade"));
+                lessonRepository.save(new Lesson("Sport", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Sport", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Sport", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Bildner. Gestalten", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "Florian", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
+                lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Adrian", "6c grade"));
+
+            }
 
             Lesson lesson = lessonRepository.findAll(Sort.by("id")).iterator().next();
             lesson.setTimeslot(timeslotRepository.findAll(Sort.by("id")).iterator().next());
@@ -192,7 +623,8 @@ public class TimeTableSpringBootApp {
     public enum DemoData {
         NONE,
         SMALL,
-        LARGE
+        LARGE,
+        REAL
     }
 
 }
