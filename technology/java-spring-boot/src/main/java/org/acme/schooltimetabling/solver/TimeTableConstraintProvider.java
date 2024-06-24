@@ -9,7 +9,7 @@ import org.optaplanner.core.api.score.stream.ConstraintProvider;
 import org.optaplanner.core.api.score.stream.Joiners;
 
 import org.acme.schooltimetabling.domain.Lesson;
-
+import java.time.DayOfWeek;
 public class TimeTableConstraintProvider implements ConstraintProvider {
 
     @Override
@@ -19,6 +19,9 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 roomConflict(constraintFactory),
                 teacherConflict(constraintFactory),
                 studentGroupConflict(constraintFactory),
+                sportInTurnhalle(constraintFactory),
+                musikInSingsaalFor3a(constraintFactory),
+                sportOnlyForGrade3And4OnTuesdays(constraintFactory),
                 // Soft constraints
                 teacherRoomStability(constraintFactory),
                 teacherTimeEfficiency(constraintFactory),
@@ -100,6 +103,36 @@ public class TimeTableConstraintProvider implements ConstraintProvider {
                 })
                 .penalize(HardSoftScore.ONE_SOFT)
                 .asConstraint("Student group subject variety");
+    }
+
+    //Custom constraints
+    Constraint sportInTurnhalle(ConstraintFactory constraintFactory) {
+        // Each "Sport" lesson must be in the room named "Turnhalle".
+        return constraintFactory
+            .forEach(Lesson.class)
+            .filter(lesson -> lesson.getSubject().equals("Sport") && !lesson.getRoom().getName().equals("Turnhalle"))
+            .penalize(HardSoftScore.ONE_HARD)
+            .asConstraint("Sport in Turnhalle");
+    }
+    Constraint musikInSingsaalFor3a(ConstraintFactory constraintFactory) {
+        // Each "Musik" lesson of the class "3a grade" must be in the room named "Singsaal".
+        return constraintFactory
+            .forEach(Lesson.class)
+            .filter(lesson -> lesson.getSubject().equals("Musik")
+                && lesson.getStudentGroup().equals("3a grade")
+                && !lesson.getRoom().getName().equals("Singsaal"))
+            .penalize(HardSoftScore.ONE_HARD)
+            .asConstraint("Musik in Singsaal for 3a grade");
+    }
+    Constraint sportOnlyForGrade3And4OnTuesdays(ConstraintFactory constraintFactory) {
+        // Only 3rd and 4th grades can have "Sport" lessons on Tuesdays.
+        return constraintFactory
+            .forEach(Lesson.class)
+            .filter(lesson -> lesson.getSubject().equals("Sport")
+                && lesson.getTimeslot().getDayOfWeek() == DayOfWeek.TUESDAY
+                && !(lesson.getStudentGroup().startsWith("3") || lesson.getStudentGroup().startsWith("4")))
+            .penalize(HardSoftScore.ONE_HARD)
+            .asConstraint("Sport only for 3rd and 4th grades on Tuesdays");
     }
 
 }
