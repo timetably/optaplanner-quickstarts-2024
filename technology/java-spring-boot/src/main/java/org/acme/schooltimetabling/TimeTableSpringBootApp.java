@@ -23,7 +23,7 @@ public class TimeTableSpringBootApp {
         SpringApplication.run(TimeTableSpringBootApp.class, args);
     }
 
-    @Value("${timeTable.demoData:REAL}")
+    @Value("${timeTable.demoData:NONE}")
     private DemoData demoData;
 
     @Bean
@@ -609,7 +609,6 @@ public class TimeTableSpringBootApp {
                 lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
                 lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
                 lessonRepository.save(new Lesson("Medien u. Informatik", "Adrian", "6c grade"));
-
             }
 
             Lesson lesson = lessonRepository.findAll(Sort.by("id")).iterator().next();

@@ -202,7 +202,7 @@ function stopSolving() {
   });
 }
 
-function addLesson() {
+function addSingleLesson() {
   var subject = $("#lesson_subject").val().trim();
   $.post("/lessons", JSON.stringify({
     "subject": subject,
@@ -215,6 +215,61 @@ function addLesson() {
   });
   $('#lessonDialog').modal('toggle');
 }
+
+function addLesson(subject, teacher, studentGroup) {
+  $.post("/lessons", JSON.stringify({
+    "subject": subject,
+    "teacher": teacher,
+    "studentGroup": studentGroup
+  }), function () {
+    refreshTimeTable();
+  }).fail(function (xhr, ajaxOptions, thrownError) {
+    showError("Adding lesson (" + subject + ") failed.", xhr);
+  });
+}
+
+function processCSVContent(data, fileName) {
+  var rows = data.split('\n');
+  var teachers = rows[0].split(';');
+  for (var i = 1; i < rows.length; i++) {
+    var cells = rows[i].split(';');
+    var subject = cells[0].trim();
+
+    for (var j = 2; j < cells.length; j++) {
+      if (cells[j].trim()) {
+        for (var v = 0; v < cells[j].trim(); v++) {
+          addLesson(subject, teachers[j].replace(/[^a-z0-9]/gi, '_'), fileName.replace(/\.csv$/i, ''));
+        }
+      }
+    }
+  }
+}
+
+function handleFiles(files) {
+  for (var i = 0; i < files.length; i++) {
+    (function(file) {
+      var reader = new FileReader();
+      reader.onload = function(event) {
+        var csvContent = event.target.result;
+        processCSVContent(csvContent, file.name);
+      };
+      reader.readAsText(file);
+    })(files[i]);
+  }
+}
+
+  $('#processFilesButton').click(function() {
+    var files = $('#csvFileInput')[0].files;
+    if (files.length > 0) {
+      handleFiles(files);
+    } else {
+      alert('Please select at least one CSV file.');
+    }
+  });
+
+
+
+
 
 function deleteLesson(lesson) {
   $.delete("/lessons/" + lesson.id, function () {
@@ -321,7 +376,7 @@ $(document).ready(function () {
     stopSolving();
   });
   $("#addLessonSubmitButton").click(function () {
-    addLesson();
+    addSingleLesson();
   });
   $("#addTimeslotSubmitButton").click(function () {
     addTimeslot();

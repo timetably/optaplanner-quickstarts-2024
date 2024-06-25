@@ -72,12 +72,14 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lessonDialog">
             <span class="fas fa-plus"></span> Add lesson
         </button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#timeslotDialog">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#timeslotDialog">
             <span class="fas fa-plus"></span> Add timeslot
         </button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#roomDialog">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomDialog">
             <span class="fas fa-plus"></span> Add room
         </button>
+        <input class="btn btn-secondary" type="file" id="csvFileInput" accept=".csv" multiple>
+        <button class="btn btn-primary" id="processFilesButton">Import Lessons</button>
     </div>
 
     <h2>Unassigned lessons</h2>
