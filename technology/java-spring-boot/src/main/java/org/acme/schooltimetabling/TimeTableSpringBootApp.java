@@ -23,7 +23,7 @@ public class TimeTableSpringBootApp {
         SpringApplication.run(TimeTableSpringBootApp.class, args);
     }
 
-    @Value("${timeTable.demoData:NONE}")
+    @Value("${timeTable.demoData:REAL}")
     private DemoData demoData;
 
     @Bean
@@ -290,7 +290,8 @@ public class TimeTableSpringBootApp {
                 lessonRepository.save(new Lesson("Physical education", "C. Lewis", "12th grade"));
             }
             if(demoData == DemoData.REAL) {
-                lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
+                return;
+              /*  lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
                 lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
                 lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
                 lessonRepository.save(new Lesson("NMG", "Barbara", "3a grade"));
@@ -608,7 +609,7 @@ public class TimeTableSpringBootApp {
                 lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
                 lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
                 lessonRepository.save(new Lesson("TTG", "MonikaH", "6c grade"));
-                lessonRepository.save(new Lesson("Medien u. Informatik", "Adrian", "6c grade"));
+                lessonRepository.save(new Lesson("Medien u. Informatik", "Adrian", "6c grade"));*/
             }
 
             Lesson lesson = lessonRepository.findAll(Sort.by("id")).iterator().next();
